@@ -7,7 +7,7 @@ using Core.Repositorio;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Core.Models;
+
 
 
 namespace UIWeb.Controllers
@@ -24,7 +24,7 @@ namespace UIWeb.Controllers
         // GET: Receitas
         public async Task<IActionResult> Index()
         {
-            return View(await _context.ReceitaDb.ToListAsync());
+            return View(await _context.Receita_db.ToListAsync());
         }
 
         // GET: Receitas/Details/5
@@ -35,7 +35,7 @@ namespace UIWeb.Controllers
                 return NotFound();
             }
 
-            var receita = await _context.ReceitaDb
+            var receita = await _context.Receita_db
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (receita == null)
             {
@@ -75,7 +75,7 @@ namespace UIWeb.Controllers
                 return NotFound();
             }
 
-            var receita = await _context.ReceitaDb.FindAsync(id);
+            var receita = await _context.Receita_db.FindAsync(id);
             if (receita == null)
             {
                 return NotFound();
@@ -126,7 +126,7 @@ namespace UIWeb.Controllers
                 return NotFound();
             }
 
-            var receita = await _context.ReceitaDb
+            var receita = await _context.Receita_db
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (receita == null)
             {
@@ -141,15 +141,15 @@ namespace UIWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var receita = await _context.ReceitaDb.FindAsync(id);
-            _context.ReceitaDb.Remove(receita);
+            var receita = await _context.Receita_db.FindAsync(id);
+            _context.Receita_db.Remove(receita);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ReceitaExists(int id)
         {
-            return _context.ReceitaDb.Any(e => e.Id == id);
+            return _context.Receita_db.Any(e => e.Id == id);
         }
     }
 }

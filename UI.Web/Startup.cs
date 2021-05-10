@@ -24,7 +24,7 @@ namespace UIWeb
         }
 
 
-        private IConfiguration Configuration { get; }
+        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -34,6 +34,7 @@ namespace UIWeb
 
             services.AddControllersWithViews();
 
+            //CONEXAO REFATORADA PARA CORE
             string StrConn = @"server=localhost;database=Recipes4Net;integrated security=true";
             services.AddDbContext<Recipes4NetDb>(optionsAction: builder => builder.UseSqlServer(StrConn));
 
